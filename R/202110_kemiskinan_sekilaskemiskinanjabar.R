@@ -155,7 +155,8 @@ pov_joined <- pov_pop_pct %>%
   left_join(pov_trend) %>% 
   left_join(pov_xline) %>% 
   mutate(daerah = tools::toTitleCase(tolower(daerah))) %>% 
-  mutate("Perbandingan dengan Garis Kemiskinan" = monthly_exp)
+  mutate("Perbandingan dengan Garis Kemiskinan" = monthly_exp) %>% 
+  mutate(daerah = str_replace(daerah, "Kabupaten", "Kab."))
 
 # visualization ----
 pov_tab <- pov_joined %>% 
@@ -203,7 +204,7 @@ pov_tab <- pov_joined %>%
     title = md("Kemiskinan di Jawa Barat Tahun 2020: Selayang Pandang"),
     subtitle = md("Kemiskinan menjadi salah satu aspek yang terus diusahakan untuk dientaskan oleh Pemerintah Provinsi Jawa Barat.
                   Pada tahun 2020, **Kota Tasikmalaya** memiliki persentase jumlah penduduk miskin tertinggi, yaitu sebesar **11.87% dari 726 ribu jiwa**, meskipun angka ini selalu **menurun sejak 5 tahun terakhir**.
-                  Di sisi lain, seluruh Kota dan Kabupaten di Jawa Barat tetap mampu bertahan **di atas Garis Kemiskinan** sebesar *411 ribu rupiah* di tahun 2020 walaupun diterpa pandemi COVID-19.")
+                  Di sisi lain, seluruh Kota dan Kabupaten di Jawa Barat tetap mampu bertahan **di atas Garis Kemiskinan** sebesar **411 ribu rupiah** di tahun 2020 walaupun diterpa pandemi COVID-19.")
   )%>%
   tab_source_note(
     source_note = md("**Data:** Open Data Jawa Barat & Badan Pusat Statistik | **Tabel:** Jabar Digital Service")
