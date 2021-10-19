@@ -187,17 +187,20 @@ pov_tab <- pov_joined %>%
   fmt_symbol_first(
     populasi,
     decimals = 0,
-    suffix = " ribu"
+    suffix = " ribu",
+    gfont = "Fira Code"
   ) %>% 
   fmt_symbol_first(
     pov_pct,
     decimals = 2,
-    symbol = "&#37;"
+    symbol = "&#37;",
+    gfont = "Fira Code"
   ) %>% 
   fmt_symbol_first(
     monthly_exp,
     decimals = 0,
-    suffix = " ribu"
+    suffix = " ribu",
+    gfont = "Fira Code"
   ) %>% 
 # writing column names, title, subtitle, footnote, source note
   cols_label(
