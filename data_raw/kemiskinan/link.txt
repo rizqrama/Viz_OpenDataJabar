@@ -1,0 +1,5 @@
+https://opendata.jabarprov.go.id/id/dataset/jumlah-penduduk-berdasarkan-jenis-kelamin-di-jawa-barat
+https://opendata.jabarprov.go.id/id/dataset/jumlah-penduduk-miskin-berdasarkan-kabupatenkota-di-jawa-barat
+https://opendata.jabarprov.go.id/id/dataset/angka-garis-kemiskinan-per-kapita-per-bulan-berdasarkan-kabupatenkota-di-jawa-barat
+https://opendata.jabarprov.go.id/id/dataset/jumlah-pengeluaran-per-kapita-berdasarkan-kabupatenkota-di-jawa-barat
+https://www.bps.go.id/subject/23/kemiskinan-dan-ketimpangan.html
