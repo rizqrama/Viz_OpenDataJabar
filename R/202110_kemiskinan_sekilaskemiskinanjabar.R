@@ -63,12 +63,13 @@ pov_pop_pct %>%
   ) %>% 
   fmt_symbol_first(
     column = pov_pct,
-    suffix = "%"
+    suffix = "%",
+  decimals = 2
   ) %>% 
   fmt_symbol_first(
     column = populasi,
     decimals = 0,
-    suffix = "ribu"
+    suffix = " ribu"
   )
 
 # > poverty population trend 2016 - 2020
@@ -83,8 +84,8 @@ pov_trend %>%
   gt() %>% 
   gtExtras::gt_sparkline(
     trend,
-    range_colors = c("#1976D2", "#E53935"),
-    line_color = "#212121",
+    range_colors = c("#FFB900", "#1E88E5"),
+    line_color = "grey70",
     label = FALSE
   )
 
@@ -170,8 +171,8 @@ pov_tab <- pov_joined %>%
   ) %>% 
   gtExtras::gt_sparkline(
     trend,
-    range_colors = c("#069550", "#FFC800"),
-    line_color = "#212121",
+    range_colors = c("#FFB900", "#1E88E5"),
+    line_color = "grey70",
     label = FALSE
   ) %>% 
   gt_plt_bullet(
@@ -181,9 +182,6 @@ pov_tab <- pov_joined %>%
     width = 50,
     colors = c("#069550", "#FFC800")
   ) %>% 
-# formatting
-  # fmt_symbol_first(populasi, decimals = 0, use_seps = FALSE) %>% 
-  # fmt_number(monthly_exp, decimals = 0, use_seps = FALSE) %>% 
   fmt_symbol_first(
     populasi,
     decimals = 0,
@@ -201,15 +199,15 @@ pov_tab <- pov_joined %>%
     decimals = 0,
     suffix = " ribu",
     gfont = "Fira Code"
-  ) %>% 
-# writing column names, title, subtitle, footnote, source note
+  ) 
+
+pov_tab <- pov_tab %>% 
   cols_label(
     daerah = "Daerah",
     populasi = md("Populasi Penduduk<br/>(jiwa)"),
     pov_pct = md("Persentase<br/>Penduduk Miskin"),
     trend = md("Tren Jumlah<br/>Penduduk Miskin"),
-    monthly_exp = md("Pengeluaran Bulanan<br/>(rupiah)")
-  ) %>%
+    monthly_exp = md("Pengeluaran Bulanan<br/>(rupiah)")) %>%
   tab_header(
     title = md("Selayang Pandang Kemiskinan di Jawa Barat Tahun 2020"),
     subtitle = md("Kemiskinan menjadi salah satu aspek yang terus diusahakan untuk dientaskan oleh Pemerintah Provinsi Jawa Barat. Pada tahun 2020, **Kota Tasikmalaya** memiliki persentase jumlah penduduk miskin tertinggi, yaitu sebesar **11.87% dari 726 ribu jiwa**, meskipun angka ini selalu **menurun sejak 5 tahun terakhir**. Di sisi lain, seluruh Kota dan Kabupaten di Jawa Barat tetap mampu bertahan **di atas Garis Kemiskinan** walaupun diterpa pandemi COVID-19.")
@@ -218,14 +216,10 @@ pov_tab <- pov_joined %>%
     source_note = md("**Data:** Open Data Jawa Barat & Badan Pusat Statistik | **Tabel:** R. Ramadhan for Jabar Digital Service")
   )%>%
   tab_footnote(
-    footnote = md("**Garis Kemiskinan** (GK) dapat diterjemahkan sebagai pengeluaran minimum untuk memenuhi kebutuhan gizi 2100 kilokalori per hari serta kebutuhan lainnya seperti tempat tinggal, sandang, pendidikan, dan kesehatan. Warga dengan rata-rata pengeluaran per bulan di bawah GK akan dikategorikan sebagai penduduk miskin."),
-    locations = cells_title(groups = "subtitle")
+    footnote = md("**Garis Kemiskinan** (GK) dapat diterjemahkan sebagai pengeluaran minimum untuk memenuhi kebutuhan gizi 2100 kilokalori per hari serta kebutuhan lainnya seperti tempat tinggal, sandang, pendidikan, dan kesehatan. Warga dengan rata-rata pengeluaran per bulan di bawah GK akan dikategorikan sebagai penduduk miskin."), locations = cells_title(groups = "subtitle")
   ) %>% 
   tab_footnote(
-    footnote = md("Pengeluaran bulanan per kapita tiap Kota dan Kabupaten pada tahun 2020 (*garis hijau*) dibandingkan terhadap GK Provinsi Jawa Barat sebesar **Rp410.988,00** (*garis kuning*)."),
-    locations = cells_column_labels(
-      columns = monthly_exp
-  )) %>% 
+    footnote = md("Pengeluaran bulanan per kapita tiap Kota dan Kabupaten pada tahun 2020 (*garis hijau*) dibandingkan terhadap GK Provinsi Jawa Barat sebesar **Rp410.988,00** (*garis kuning*)."), locations = cells_column_labels(columns = monthly_exp)) %>% 
   cols_align(
     align = "right",
     columns = c(populasi, pov_pct, monthly_exp)
@@ -233,8 +227,9 @@ pov_tab <- pov_joined %>%
   cols_align(
     align = "center",
     columns = c(trend)
-  ) %>% 
-  # Title
+  )
+
+pov_tab <- pov_tab %>% 
   tab_style(
     style = list(
       cell_text(
@@ -244,17 +239,14 @@ pov_tab <- pov_joined %>%
         color='#006430')),
     locations = cells_title(groups = "title")
   )%>%
-  # Subtitle
   tab_style(
     style = list(
       cell_text(
         font=google_font(name = "Roboto Condensed"),
         color = "#212121",
-        align = "left")
-    ),
+        align = "left")),
     locations = cells_title(groups = "subtitle")
   ) %>%
-  # Header
   tab_style(
     style = list(
       cell_text(
@@ -275,28 +267,18 @@ pov_tab <- pov_joined %>%
         v_align = "middle",
         color = "#212121")),
     locations = cells_column_labels(
-      columns = c(populasi, pov_pct, trend, monthly_exp,
-                  " ")
-    )
+      columns = c(populasi, pov_pct, trend, monthly_exp," "))
   )%>%
-  # Body
   tab_style(
     style = list(
       cell_text(font=google_font(name = "Muli"),
                 align = "left")),
-    locations = cells_body(
-      columns = c(daerah)
-    )
+    locations = cells_body(columns = c(daerah))
   )%>%
-  tab_style(
-    style = list(
+  tab_style(style = list(
       cell_text(font=google_font(name = "Muli"),
                 align = "center")),
-    locations = cells_body(
-      columns = c(trend)
-    )
-  )%>%
-  # Footnote
+    locations = cells_body(columns = c(trend))) %>%
   tab_style(
     style = list(
       cell_text(
@@ -305,17 +287,14 @@ pov_tab <- pov_joined %>%
         size = "small")),
     locations = cells_footnotes()
   ) %>%
-  # source note
   tab_style(
     style = list(
-      cell_text(font=google_font(name = "Roboto Condensed"))),
-    locations = cells_source_notes()
-  )%>%
-  # Borders
+      cell_text(font=google_font(name = "Roboto Condensed"),
+                align = "right")),
+    locations = cells_source_notes())%>%
   tab_options(
     table.border.top.style = "hidden",
-    table.border.bottom.style = "hidden"
-  )
+    table.border.bottom.style = "hidden")
   
 gtsave_extra(
   data = pov_tab,
