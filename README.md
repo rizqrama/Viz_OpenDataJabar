@@ -20,7 +20,8 @@ Thank you!
 ## Please enjoy our viz!
 
 **October 2021 - 01**: West Java's Poverty Line in 2020
-https://raw.githubusercontent.com/rizqrama/Viz_OpenDataJabar/master/Outfile/202110_kemiskinan_kemiskinan2020.png
+
+![West Java's Proverty Line](https://raw.githubusercontent.com/rizqrama/Viz_OpenDataJabar/master/Outfile/202110_kemiskinan_kemiskinan2020.png)
 
 **November 2021 - 01**: Health Facilities' Distance across West Java
-https://raw.githubusercontent.com/rizqrama/Viz_OpenDataJabar/master/Outfile/202111_health_facilities_hex.png
+![Health Facilities Distance across West Java](https://raw.githubusercontent.com/rizqrama/Viz_OpenDataJabar/master/Outfile/202111_health_facilities_hex.png)
