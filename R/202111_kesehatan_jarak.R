@@ -114,6 +114,8 @@ jabar_hf <- jabar_hex_json %>%
 
 # > plot ----
 
+my_sub <- "Health facilities consisted of hospitals, clinics, doctors, dentists, and pharmacies. These facilities are mainly centralized around Bandung Metropolitan Area and DKI Jakarta's neighbouring cities such as Bekasi, Bogor, and Depok. However, people who live in the western part of West Java may have to struggle more reaching those enlisted health facilities."
+
 jabarhealth_plot_hex <- ggplot() +
   geom_sf(
     data = jabar_hf,
